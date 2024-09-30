@@ -1,0 +1,9 @@
+p {
+    font-size: 12pt;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+h1, h2, h3 {
+    color: blue;
+    font-size: 18px;
+}
