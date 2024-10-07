@@ -1,9 +1,82 @@
-p {
-    font-size: 12pt;
-    font-family: 'Times New Roman', Georgia, 'Times New Roman', Times, serif;
+/* Reset some default styles */
+body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
 
-h1, h2, h3 {
-    color: blue;
-    font-size: 18px;
+body {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+#PageHeader {
+    background-color: #4a90e2;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.SiteLogo {
+    width: 80px;
+    height: auto;
+    margin: 0 10px;
+}
+
+#SiteTitle {
+    font-size: 2.5em;
+}
+
+#SiteNavigation {
+    background-color: #333;
+}
+
+#SiteNavigation ul {
+    list-style-type: none;
+    padding: 10px 0;
+}
+
+#SiteNavigation li {
+    display: inline;
+    margin-right: 20px;
+}
+
+#SiteNavigation a {
+    color: white;
+    text-decoration: none;
+}
+
+#SiteNavigation a:hover {
+    text-decoration: underline;
+}
+
+#MainContent {
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    border-bottom: 2px solid #4a90e2;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+article {
+    margin-bottom: 20px;
+}
+
+#PageFooter {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #333;
+    color: white;
 }
