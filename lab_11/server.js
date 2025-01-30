@@ -14,8 +14,16 @@ app.get('/test', function(req, res){
     res.send ("Hello world!! by Expresss, testing routing based on random experimemts ");
  }); 
 
- app.get('/joke', function(req, res){ 
-    res.send ("Hello world!! by Expresss, testing routing based on random experimemts ");
- });
+ const express = require('express');
+const app = express();
+const knockknock = require('knock-knock-jokes'); // Importing the joke module
 
-app.listen(8080);
+app.get('/joke', function (req, res) {
+    res.writeHead(200, { 'Content-Type': 'text/html' }); // Fixed header case
+    var randomJoke = knockknock(); // Getting a joke
+    res.end(randomJoke);
+}); // Closing bracket was misplaced
+
+app.listen(8080, () => {
+    console.log('Server running on port 8080');
+});
