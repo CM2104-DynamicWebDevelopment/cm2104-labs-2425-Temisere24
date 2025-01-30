@@ -14,4 +14,8 @@ app.get('/test', function(req, res){
     res.send ("Hello world!! by Expresss, testing routing based on random experimemts ");
  }); 
 
+ app.get('/joke', function(req, res){ 
+    res.send ("Hello world!! by Expresss, testing routing based on random experimemts ");
+ });
+
 app.listen(8080);
