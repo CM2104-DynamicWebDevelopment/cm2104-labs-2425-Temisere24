@@ -58,8 +58,7 @@ app.get('/searchLove', function (req, res) {
     const app = express();
     const port = 8080;
     
-    // Serve static files from "public" directory
-    app.use(express.static("public"));
+    
     
     // Initialize Spotify API with your credentials
     const spotifyApi = new SpotifyWebApi({
