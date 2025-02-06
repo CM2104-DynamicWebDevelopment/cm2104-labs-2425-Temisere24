@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 
-
+var SpotifyWebApi = require("spotify-web-api-node");
 
 app.use(express.static('public'))
 app.get('/', function(req, res){
@@ -52,75 +52,32 @@ app.get('/searchLove', function (req, res) {
     getTracks('love', res); 
     }); 
 
-    
-    const SpotifyWebApi = require("spotify-web-api-node");
-    
-    const app = express();
-    const port = 8080;
-    
-    
-    
-    // Initialize Spotify API with your credentials
-    const spotifyApi = new SpotifyWebApi({
-      clientId: "0db5cf585b37467bb067928f1d7118a6",
-      clientSecret: "57b64541cd7d4e4d91dfc7ad8074a72b",
+
+    spotifyApi.searchTracks(searchterm)
+    .then(function (req, res ) { 
+      var tracks = data.body.tracks.items; 
+      var HTMLResponse = ""; 
+  
+      for (var i = 0; i < tracks.length; i++) { 
+        var track = tracks[i]; 
+        console.log(track.name); 
+  
+        HTMLResponse +=  
+          "<div>" + 
+          "<h2>" + track.name + "</h2>" + 
+          "<h4>" + track.artists[0].name + "</h4>" + 
+          "<img src='" + track.album.images[0].url + "'>" + 
+          "<a href='" + track.external_urls.spotify + "'> Track Details </a>" + 
+          "</div>";  // Fixed the incorrect quotation mark
+  
+        console.log(HTMLResponse); 
+      } 
+      
+      res.send(HTMLResponse); // Ensure res is defined in the function scope
+    })
+    .catch(function (err) { 
+      console.error(err); 
     });
-    
-    // Retrieve and set an access token
-    spotifyApi.clientCredentialsGrant().then(
-      function (data) {
-        console.log("✅ Access token retrieved!");
-        console.log("🔑 Expires in " + data.body["expires_in"] + " seconds");
-        spotifyApi.setAccessToken(data.body["access_token"]);
-      },
-      function (err) {
-        console.error("❌ Error retrieving access token:", err.message);
-      }
-    );
-    
-    // Function to fetch tracks from Spotify API
-    async function getTracks(searchterm, res) {
-      try {
-        const data = await spotifyApi.searchTracks(searchterm);
-        const tracks = data.body.tracks.items;
-        let HTMLResponse = "";
-    
-        tracks.forEach((track) => {
-          HTMLResponse += `
-            <div>
-              <h2>${track.name}</h2>
-              <h4>${track.artists[0].name}</h4>
-              <img src="${track.album.images[0]?.url}" alt="Album cover">
-              <a href="${track.external_urls.spotify}" target="_blank">Track Details</a>
-            </div>`;
-        });
-    
-        res.send(HTMLResponse);
-      } catch (err) {
-        console.error("❌ Error fetching tracks:", err);
-        res.status(500).send("Error retrieving tracks.");
-      }
-    }
-    
-    // Route for searching "love" tracks
-    app.get("/searchLove", (req, res) => {
-      getTracks("love", res);
-    });
-    
-    // Route for dynamic searches
-    app.get("/search", (req, res) => {
-      const searchterm = req.query.q;
-      if (!searchterm) {
-        return res.status(400).send("❌ Please provide a search term.");
-      }
-      getTracks(searchterm, res);
-    });
-    
-    // Start the server
-    app.listen(port, () => {
-      console.log(`🚀 Server running on http://localhost:${port}`);
-    });
-    
   
     
 app.listen(8080);
