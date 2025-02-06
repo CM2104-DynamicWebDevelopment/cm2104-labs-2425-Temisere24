@@ -48,6 +48,32 @@ spotifyApi.clientCredentialsGrant().then(
 app.get('/searchLove', function (req, res) { 
     getTracks('love', res); 
     }); 
-    
+
+    spotifyApi.searchTracks(searchterm)
+    .then(function (data) { 
+      var tracks = data.body.tracks.items; 
+      var HTMLResponse = ""; 
+  
+      for (var i = 0; i < tracks.length; i++) { 
+        var track = tracks[i]; 
+        console.log(track.name); 
+  
+        HTMLResponse +=  
+          "<div>" + 
+          "<h2>" + track.name + "</h2>" + 
+          "<h4>" + track.artists[0].name + "</h4>" + 
+          "<img src='" + track.album.images[0].url + "'>" + 
+          "<a href='" + track.external_urls.spotify + "'> Track Details </a>" + 
+          "</div>";  // Fixed the incorrect quotation mark
+  
+        console.log(HTMLResponse); 
+      } 
+      
+      res.send(HTMLResponse); // Ensure res is defined in the function scope
+    })
+    .catch(function (err) { 
+      console.error(err); 
+    });
+  
     
 app.listen(8080);
