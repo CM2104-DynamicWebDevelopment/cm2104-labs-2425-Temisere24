@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-const searchterm = "some-module"; // Define the module name as a string
+
 var searchTrack = require(searchterm);
 
 app.use(express.static('public'))
