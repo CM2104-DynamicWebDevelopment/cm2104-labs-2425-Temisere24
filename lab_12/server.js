@@ -52,8 +52,9 @@ app.get('/searchLove', function (req, res) {
     getTracks('love', res); 
     }); 
 
+
     spotifyApi.searchTracks(searchterm)
-    .then(function (data) { 
+    .then(function (req, res ) { 
       var tracks = data.body.tracks.items; 
       var HTMLResponse = ""; 
   
