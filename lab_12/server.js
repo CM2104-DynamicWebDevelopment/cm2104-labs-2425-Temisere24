@@ -16,9 +16,7 @@ app.get('/', function(req, res){
 
  var spotifyApi = new spotifyWebApi({
     clientId: '0db5cf585b37467bb067928f1d7118a6',
-
     clientSecret: '57b64541cd7d4e4d91dfc7ad8074a72b'
-
  });
 
 
@@ -39,14 +37,14 @@ spotifyApi.clientCredentialsGrant().then(
     }); 
 
 
-    // async function getTracks(searchterm, res) { 
-    //     spotifyApi.searchTracks(searchterm) 
-    //     .then(function (data) { 
-    //     res.send(JSON.stringify(data.body)); 
-    //     }, function (err) { 
-    //     console.error(err); 
-    //     }); 
-    //     }
+    async function getTracks(searchterm, res) { 
+        spotifyApi.searchTracks(searchterm) 
+        .then(function (data) { 
+        res.send(JSON.stringify(data.body)); 
+        }, function (err) { 
+        console.error(err); 
+        }); 
+        }
 
         //route for love in tracks, artists and albums 
 app.get('/searchLove', function (req, res) { 
