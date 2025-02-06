@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
-var searchTrack = require(searchterm)
+const searchterm = "some-module"; // Define the module name as a string
+var searchTrack = require(searchterm);
+
 app.use(express.static('public'))
 app.get('/', function(req, res){
    res.send("Hello world! by express");
