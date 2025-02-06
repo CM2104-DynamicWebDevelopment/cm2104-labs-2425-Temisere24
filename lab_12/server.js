@@ -52,7 +52,7 @@ app.get('/searchLove', function (req, res) {
     getTracks('love', res); 
     }); 
 
-    const express = require("express");
+    
     const SpotifyWebApi = require("spotify-web-api-node");
     
     const app = express();
