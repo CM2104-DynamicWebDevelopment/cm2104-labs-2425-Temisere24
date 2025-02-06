@@ -1,7 +1,8 @@
 var express = require('express');
 var app = express();
 
-var searchTrack = require(searchterm);
+const SpotifyWebApi = require("spotify-web-api-node");
+const express = require("express");
 
 app.use(express.static('public'))
 app.get('/', function(req, res){
