@@ -8,7 +8,7 @@ const MongoClient = require('mongodb-legacy').MongoClient;
  const app = express();
 
  //code to define the public 
-app.use(express.static(public))
+app.use(express.static('public'))
 
  var db;
  //run the connect method.
