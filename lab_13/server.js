@@ -9,6 +9,8 @@ const MongoClient = require('mongodb-legacy').MongoClient;
 
  //code to define the public 
 app.use(express.static('public'))
+app.use(express.urlencoded({extended:true}))
+
 
  var db;
  //run the connect method.
@@ -34,6 +36,15 @@ app.use(express.static('public'))
       res.send(output);
     });
    });
+
+   app.post('/quotes', function (req, res) {
+    db.collection('quotes').insertOne(req.body, function(err, result) {
+   if (err) throw err;
+      console.log('saved to database')
+      res.redirect('/')
+    })
+   })
+  
 
  //everything is good lets start
  app.listen(8080);
