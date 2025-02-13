@@ -19,7 +19,22 @@ app.use(express.static(public))
  await client.connect();
  console.log('Connected successfully to server');
  db = client.db(dbname);
- 
+
+//route for all quotes 
+ app.get('/all', function(req, res) {
+    db.collection('quotes').find().toArray(function(err, result) {
+   if (err) throw err;
+   var output = "<h1>All the quotes</h1>";
+   for (var i = 0; i < result.length; i++) {
+        output += "<div>"
+        output += "<h3>" + result[i].name + "</h3>"
+        output += "<p>" + result[i].quote + "</p>"
+        output += "</div>"
+      }
+      res.send(output);
+    });
+   });
+
  //everything is good lets start
  app.listen(8080);
  }
