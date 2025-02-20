@@ -19,6 +19,18 @@
  <h2>Variable</h2>
  <p><%= tagline %></p>
 
+ <h2>Loop</h2>
+ control the loop, 
+not drawn on page
+ <ul>
+ <% drinks.forEach(function(drink) { %>
+ <li>
+ <%= drink.name %> 
+<%= drink.drunkness %>
+ </li>
+ <% }); %>
+ </ul>
+
  </div>
  </main>
 
