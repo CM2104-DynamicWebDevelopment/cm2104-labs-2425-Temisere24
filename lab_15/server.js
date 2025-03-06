@@ -69,29 +69,30 @@ app.get('/', function(req, res) {
 });
 
 //this is our login route, all it does is render the login.ejs page.
-app.get('/', function(req, res) {
-  if (!req.session.loggedin) {
-    res.redirect('/login');
-    return;
-  }
-
-  // Fetch the currently logged-in user's details
-  db.collection('people').findOne({ "login.username": req.session.username }, function(err, loggedInUser) {
-    if (err) throw err;
-
-    // Fetch all users
-    db.collection('people').find().toArray(function(err, result) {
-      if (err) throw err;
-
-      // Pass both the logged-in user and the list of users to the template
-      res.render('pages/users', {
-        users: result,
-        loggedInUser: loggedInUser
-      });
-    });
-  });
+app.get('/login', function(req, res) {
+  res.render('pages/login');
 });
 
+
+
+app.get('/profile', function(req, res) {
+  if(!req.session.loggedin){res.redirect('/login');return;}
+  
+  
+  var uname = req.query.username;
+  
+ 
+  db.collection('people').findOne({"login.username": uname}, function(err, result) {
+    if (err) throw err;
+   
+
+
+    res.render('pages/profile', {
+      user: result
+    })
+  });
+
+});
 //adduser route simply draws our adduser page
 app.get('/adduser', function(req, res) {
   if(!req.session.loggedin){res.redirect('/login');return;}
