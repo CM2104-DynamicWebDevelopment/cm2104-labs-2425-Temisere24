@@ -1,3 +1,5 @@
+<!-- views/pages/about.ejs -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,20 +23,18 @@
           <!-- get the medium picture -->
           <img src="<%= user.picture.medium %>" class="img-circle" />
           <!-- get the username -->
-          <h2>Username: <%= user.login.username %></h2>
-          <!-- display the password -->
-          <h3>Password: <%= user.login.password %></h3>
+          <h2>username: <%= user.login.username %></h2>
           <p>
             <!-- get the gender-->
-            Gender: <%= user.gender %>
+            gender: <%= user.gender %>
           </p>
           <p>
             <!-- get the dob -->
-            Date of birth: <%= user.dob %>
+            date of birth: <%= user.dob %>
           </p>
           <p>
             <!-- get the registration date-->
-            Date of registration: <%= user.registered %>
+            date of registration: <%= user.registered %>
           </p>
         </div>
       </div>
@@ -42,11 +42,9 @@
       <div class="col-sm-4">
         <div class="well">
           <h3>Details</h3>
-          <!-- Display the thumbnail above the address -->
-          <img src="<%= user.picture.thumbnail %>" class="img-thumbnail" alt="Thumbnail">
           <h3>Address</h3>
           <ul>
-            <!-- get the components of the address-->
+            <!-- get the componemts of the address-->
             <li class="list-group-item">
               <%= user.location.street %>
             </li>
