@@ -116,6 +116,72 @@ app.post('/dologin', function(req, res) {
     });
 });
 
+//update user 
+
+// Route to display update form
+app.get('/updateuser', function (req, res) {
+  if (!req.session.loggedin) {
+    res.redirect('/login');
+    return;
+  }
+
+  let uname = req.query.username; // Get username from query params
+
+  db.collection('people').findOne({ "login.username": uname }, function (err, result) {
+    if (err) throw err;
+
+    if (!result) {
+      res.redirect('/');
+      return;
+    }
+
+    res.render('pages/update', { user: result }); // Pass user data to update.ejs
+  });
+});
+
+// Route to handle user update form submission
+app.post('/doupdate', function (req, res) {
+  if (!req.session.loggedin) {
+    res.redirect('/login');
+    return;
+  }
+
+  let uname = req.body.username; // Username to update
+
+  let updatedData = {
+    $set: {
+      "gender": req.body.gender,
+      "name": {
+        "title": req.body.title,
+        "first": req.body.first,
+        "last": req.body.last
+      },
+      "location": {
+        "street": req.body.street,
+        "city": req.body.city,
+        "state": req.body.state,
+        "postcode": req.body.postcode
+      },
+      "email": req.body.email,
+      "login.password": req.body.password, // Update password
+      "dob": req.body.dob,
+      "picture": {
+        "large": req.body.large,
+        "medium": req.body.medium,
+        "thumbnail": req.body.thumbnail
+      },
+      "nat": req.body.nat
+    }
+  };
+
+  db.collection('people').updateOne({ "login.username": uname }, updatedData, function (err, result) {
+    if (err) throw err;
+    console.log('User updated successfully');
+    res.redirect('/'); // Redirect back to user list
+  });
+});
+
+
 // Delete user
 app.post('/delete', function(req, res) {
     if (!req.session.loggedin) { res.redirect('/login'); return; }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body class="container">
+    <header>
+        <%- include('../partials/header') %>
+    </header>
+
+    <main>
+        <div class="jumbotron">
+            <h2>Update User</h2>
+
+            <form action="/doupdate" method="POST">
+                <input type="hidden" name="username" value="<%= user.login.username %>">
+
+                <label>Title:</label>
+                <input type="text" name="title" value="<%= user.name.title %>" required>
+
+                <label>First Name:</label>
+                <input type="text" name="first" value="<%= user.name.first %>" required>
+
+                <label>Last Name:</label>
+                <input type="text" name="last" value="<%= user.name.last %>" required>
+
+                <label>Email:</label>
+                <input type="email" name="email" value="<%= user.email %>" required>
+
+                <label>Street:</label>
+                <input type="text" name="street" value="<%= user.location.street %>" required>
+
+                <label>City:</label>
+                <input type="text" name="city" value="<%= user.location.city %>" required>
+
+                <label>State:</label>
+                <input type="text" name="state" value="<%= user.location.state %>" required>
+
+                <label>Postcode:</label>
+                <input type="text" name="postcode" value="<%= user.location.postcode %>" required>
+
+                <label>Password:</label>
+                <input type="password" name="password" value="<%= user.login.password %>" required>
+
+                <label>Date of Birth:</label>
+                <input type="text" name="dob" value="<%= user.dob %>" required>
+
+                <label>Nationality:</label>
+                <input type="text" name="nat" value="<%= user.nat %>" required>
+
+                <button type="submit">Update User</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer') %>
+    </footer>
+</body>
+
+</html>
