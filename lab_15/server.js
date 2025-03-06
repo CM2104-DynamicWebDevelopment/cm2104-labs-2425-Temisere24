@@ -59,6 +59,17 @@ app.get('/', function(req, res) {
     });
 });
 
+
+
+// Route to display update form
+app.get('/updateuser', function (req, res) {
+  if (!req.session.loggedin) {
+    res.redirect('/login');
+    return;
+  }
+
+  let uname = req.query.username; // Get username from query params
+
 // Login page
 app.get('/login', function(req, res) {
     res.render('pages/login');
@@ -118,14 +129,9 @@ app.post('/dologin', function(req, res) {
 
 //update user 
 
-// Route to display update form
-app.get('/updateuser', function (req, res) {
-  if (!req.session.loggedin) {
-    res.redirect('/login');
-    return;
-  }
 
-  let uname = req.query.username; // Get username from query params
+
+  
 
   db.collection('people').findOne({ "login.username": uname }, function (err, result) {
     if (err) throw err;
