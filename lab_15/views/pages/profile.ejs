@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head')%>
+</head>
+
+<body class="container">
+
+  <header>
+    <%- include('../partials/header')%>
+  </header>
+
+  <main>
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="jumbotron">
+          <!-- Page to display a single profile. The "user" object is passed through from express -->
+          <!-- get the first name -->
+          <h1>Hi <%= user.name.first %></h1>
+          <!-- get the medium picture -->
+          <img src="<%= user.picture.medium %>" class="img-circle" />
+          <!-- get the username -->
+          <h2>Username: <%= user.login.username %></h2>
+          <!-- display the password -->
+          <h3>Password: <%= user.login.password %></h3>
+          <p>
+            <!-- get the gender-->
+            Gender: <%= user.gender %>
+          </p>
+          <p>
+            <!-- get the dob -->
+            Date of birth: <%= user.dob %>
+          </p>
+          <p>
+            <!-- get the registration date-->
+            Date of registration: <%= user.registered %>
+          </p>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="well">
+          <h3>Details</h3>
+          <!-- Display the thumbnail above the address -->
+          <img src="<%= user.picture.thumbnail %>" class="img-thumbnail" alt="Thumbnail">
+          <h3>Address</h3>
+          <ul>
+            <!-- get the components of the address-->
+            <li class="list-group-item">
+              <%= user.location.street %>
+            </li>
+            <li class="list-group-item">
+              <%= user.location.city%>
+            </li>
+            <li class="list-group-item">
+              <%= user.location.state %>
+            </li>
+            <li class="list-group-item">
+              <%= user.location.postcode %>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <%- include('../partials/footer')%>
+  </footer>
+
+</body>
+
+</html>
