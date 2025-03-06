@@ -61,14 +61,6 @@ app.get('/', function(req, res) {
 
 
 
-// Route to display update form
-app.get('/updateuser', function (req, res) {
-  if (!req.session.loggedin) {
-    res.redirect('/login');
-    return;
-  }
-
-  let uname = req.query.username; // Get username from query params
 
 // Login page
 app.get('/login', function(req, res) {
@@ -85,6 +77,15 @@ app.get('/profile', function(req, res) {
         res.render('pages/profile', { user: result });
     });
 });
+
+// Route to display update form
+app.get('/updateuser', function (req, res) {
+  if (!req.session.loggedin) {
+    res.redirect('/login');
+    return;
+  }
+
+  let uname = req.query.username; // Get username from query params
 
 // Add user page
 app.get('/adduser', function(req, res) {
