@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('../partials/head')%>
+</head>
+
+<body class="container">
+  <header>
+    <%- include('../partials/header')%>
+  </header>
+
+  <main>
+    <div class="jumbotron">
+      <!-- Welcome message for the logged-in user -->
+      <% if (loggedInUser) { %>
+        <h1>Welcome, <%= loggedInUser.name.first %>!</h1>
+        <p>You are logged in as <strong><%= loggedInUser.login.username %></strong>.</p>
+        <img src="<%= loggedInUser.picture.thumbnail %>" class="img-thumbnail" alt="Your profile picture">
+      <% } %>
+
+      <!-- Display all users -->
+      <h2>All Students</h2>
+      <ul>
+        <% users.forEach(function(user) { %>
+          <li>
+            <a href="/profile?username=<%= user.login.username %>">
+              <%= user.name.title + " " + user.name.first + " " + user.name.last %>
+            </a>
+          </li>
+        <% }); %>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <%- include('../partials/footer')%>
+  </footer>
+</body>
+
+</html>
